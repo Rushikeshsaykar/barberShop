@@ -1,4 +1,4 @@
-import 'package:barbershop/main.dart';
+
 import 'package:barbershop/pages/homepage.dart';
 import 'package:flutter/material.dart';
 

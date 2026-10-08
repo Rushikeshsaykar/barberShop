@@ -72,7 +72,8 @@ class _HomepageState extends State<Homepage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Card(elevation: 4,
+                Card(
+                  elevation: 4,
                   child: Container(
                     width: 170,
                     height: 200,
@@ -80,16 +81,182 @@ class _HomepageState extends State<Homepage> {
                       color: Color(0xFFE6BE8A),
                       borderRadius: BorderRadius.circular(12),
                     ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/saving-preview.png"),
+                          height: 100,
+                        ),
+                        Text(
+                          "clasic cheving",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Card(
-                  elevation: 4 ,
+                  elevation: 4,
                   child: Container(
                     width: 170,
                     height: 200,
                     decoration: BoxDecoration(
                       color: Color(0xFFE6BE8A),
                       borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/hairdresser.png"),
+                          height: 100,
+                        ),
+                        Text(
+                          "hair wash",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Card(
+                  elevation: 4,
+                  child: Container(
+                    width: 170,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6BE8A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            "assets/images/haircut-removebg-preview.png",
+                          ),
+                          height: 100,
+                        ),
+                        Text(
+                          "Hair Cutting",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 4,
+                  child: Container(
+                    width: 170,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6BE8A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            "assets/images/beard-removebg-preview.png",
+                          ),
+                          height: 100,
+                        ),
+                        Text(
+                          "Beard Triming",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Card(
+                  elevation: 4,
+                  child: Container(
+                    width: 170,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6BE8A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage("assets/images/wash-face.png"),
+                          height: 100,
+                        ),
+                        Text(
+                          "Fecial",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 4,
+                  child: Container(
+                    width: 170,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFE6BE8A),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          image: AssetImage(
+                            "assets/images/kids-removebg-preview.png",
+                          ),
+                          height: 100,
+                        ),
+                        Text(
+                          "Kids HairCutting",
+                          style: TextStyle(
+                            color: Color(0xFF2B1B0E),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

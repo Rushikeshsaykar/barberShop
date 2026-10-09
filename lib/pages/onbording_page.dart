@@ -1,5 +1,5 @@
 
-import 'package:barbershop/pages/homepage.dart';
+import 'package:barbershop/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Onbordingpage extends StatefulWidget {

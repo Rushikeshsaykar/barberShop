@@ -142,6 +142,21 @@ class _BookingpageState extends State<Bookingpage> {
               ),
             ),
           ),
+
+          SizedBox(height: 50),
+
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(255, 117, 69, 30),
+              foregroundColor: const Color(0xFFF0D2AC),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            child: const Text('Book Now'),
+          ),
         ],
       ),
     );

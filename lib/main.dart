@@ -1,4 +1,5 @@
 import 'package:barbershop/pages/bookingpage.dart';
+import 'package:barbershop/pages/loginpage.dart';
 import 'package:barbershop/pages/onbordingpage.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Bookingpage(),
+      home: Loginpage(),
     );
   }
 }

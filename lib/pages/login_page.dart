@@ -1,3 +1,4 @@
+import 'package:barbershop/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
@@ -76,7 +77,9 @@ class _LoginpageState extends State<Loginpage> {
                 children: [
                   Text("Dont have account!"),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage()));
+                    },
                     child: Text(
                       "SignUp",
                       style: TextStyle(fontWeight: FontWeight.bold),

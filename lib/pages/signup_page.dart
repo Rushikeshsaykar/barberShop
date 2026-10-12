@@ -25,7 +25,7 @@ class _SignupPageState extends State<SignupPage> {
         password: paswordcontroler.text,
       );
 
-     Navigator.push(
+     Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Homepage()),
       );

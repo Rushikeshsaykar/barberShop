@@ -1,6 +1,6 @@
 import 'package:barbershop/pages/booking_page.dart';
 import 'package:barbershop/pages/login_page.dart';
-import 'package:barbershop/pages/onbording_page.dart';
+import 'package:barbershop/pages/splashscren_page.dart';
 import 'package:barbershop/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignupPage(),
+      home: splashScreen(),
     );
   }
 }

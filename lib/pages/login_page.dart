@@ -1,4 +1,6 @@
+import 'package:barbershop/pages/home_page.dart';
 import 'package:barbershop/pages/signup_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
@@ -9,6 +11,47 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  TextEditingController emailcontroler = TextEditingController();
+  TextEditingController passwordcontroler = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+  final _formKey = GlobalKey<FormState>();
+
+  _login() async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: emailcontroler.text,
+        password: passwordcontroler.text,
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()),
+      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Welcome!!")));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "invalid-email") {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Invalid Email")));
+      } else if (e.code == "wrong-password") {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Wrong Password")));
+      } else if (e.code == "invalid-credential") {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Invalid Credential")));
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Something Went Wrong")));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,87 +69,117 @@ class _LoginpageState extends State<Loginpage> {
             ],
           ),
         ),
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Wellcome! Login here",
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xFF2B1B0E),
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 20),
-              TextField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-
-                  prefixIcon: Icon(Icons.email, color: Color(0xFF2B1B0E)),
-                ),
-              ),
-              SizedBox(height: 60),
-
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-
-                  prefixIcon: Icon(Icons.lock, color: Color(0xFF2B1B0E)),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Forget Password?",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+        child: Form(
+          key: _formKey,
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Wellcome! Login here",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Color(0xFF2B1B0E),
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: emailcontroler,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    hintText: 'Email',
 
-              SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Dont have account!"),
-                  TextButton(
+                    prefixIcon: Icon(Icons.email, color: Color(0xFF2B1B0E)),
+                  ),
+                ),
+                SizedBox(height: 60),
+
+                TextFormField(
+                  controller: passwordcontroler,
+                  validator: (value) {
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+
+                    prefixIcon: Icon(Icons.lock, color: Color(0xFF2B1B0E)),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+
+                SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Dont have account!"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignupPage()),
+                        );
+                      },
+                      child: Text(
+                        "SignUp",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                Container(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> SignupPage()));
+                      if (_formKey.currentState!.validate()) {
+                        _login();
+                      }
                     },
                     child: Text(
-                      "SignUp",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      "login",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 19,
+                      ),
                     ),
-                  ),
-                ],
-              ),SizedBox(height: 15,),
-              Container(height: 50,width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "login",
-                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF2B1B0E), // dark brown
-                    foregroundColor: const Color(
-                      0xFFF0D2AC,
-                    ), // your theme color for text
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2B1B0E), // dark brown
+                      foregroundColor: const Color(
+                        0xFFF0D2AC,
+                      ), // your theme color for text
+                      elevation: 3,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

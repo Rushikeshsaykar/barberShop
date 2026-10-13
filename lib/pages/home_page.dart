@@ -1,3 +1,4 @@
+import 'package:barbershop/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,17 +11,15 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF0D2AC),
       body: SafeArea(
-        child: SingleChildScrollView(scrollDirection: Axis.vertical,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
-
             children: [
-          
               Container(
                 margin: EdgeInsets.only(left: 5, right: 5),
                 child: Row(
@@ -47,7 +46,7 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
-          
+
                     ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(35),
                       child: Image(
@@ -65,7 +64,7 @@ class _HomepageState extends State<Homepage> {
                 margin: EdgeInsets.only(left: 20, right: 20),
                 child: Divider(color: Color(0xFF2B1B0E)),
               ),
-          
+
               Text(
                 "Services",
                 style: TextStyle(
@@ -80,29 +79,36 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage("assets/images/saving-preview.png"),
-                            height: 100,
-                          ),
-                          Text(
-                            "clasic cheving",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                    child: InkWell(
+                      onTap: () {
+                        
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                "assets/images/saving-preview.png",
+                              ),
+                              height: 100,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "clasic cheving",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -136,7 +142,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-          
+
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -203,7 +209,7 @@ class _HomepageState extends State<Homepage> {
                   ),
                 ],
               ),
-          
+
               SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -274,4 +280,6 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
+
+ 
 }

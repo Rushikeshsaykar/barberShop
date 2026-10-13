@@ -1,7 +1,7 @@
-import 'package:barbershop/services/database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:barbershop/pages/booking_page.dart';
+
 import 'package:flutter/material.dart';
+
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,6 +11,9 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +40,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         Text(
-                          "Rushikesh Saykar",
+                          "Rushikesh",
                           style: TextStyle(
                             color: Color(0xFF2B1B0E),
                             fontWeight: FontWeight.bold,
@@ -81,7 +84,7 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
                       },
                       child: Container(
                         width: 170,
@@ -100,7 +103,7 @@ class _HomepageState extends State<Homepage> {
                               height: 100,
                             ),
                             Text(
-                              "clasic cheving",
+                              "clasic Sheving",
                               style: TextStyle(
                                 color: Color(0xFF2B1B0E),
                                 fontWeight: FontWeight.w500,
@@ -114,29 +117,34 @@ class _HomepageState extends State<Homepage> {
                   ),
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage("assets/images/hairdresser.png"),
-                            height: 100,
-                          ),
-                          Text(
-                            "hair wash",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage("assets/images/hairdresser.png"),
+                              height: 100,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "hair wash",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -149,61 +157,71 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              "assets/images/haircut-removebg-preview.png",
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                "assets/images/haircut-removebg-preview.png",
+                              ),
+                              height: 100,
                             ),
-                            height: 100,
-                          ),
-                          Text(
-                            "Hair Cutting",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                            Text(
+                              "Hair Cutting",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              "assets/images/beard-removebg-preview.png",
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                "assets/images/beard-removebg-preview.png",
+                              ),
+                              height: 100,
                             ),
-                            height: 100,
-                          ),
-                          Text(
-                            "Beard Triming",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                            Text(
+                              "Beard Triming",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -216,59 +234,69 @@ class _HomepageState extends State<Homepage> {
                 children: [
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage("assets/images/wash-face.png"),
-                            height: 100,
-                          ),
-                          Text(
-                            "Fecial",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage("assets/images/wash-face.png"),
+                              height: 100,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Fecial",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Card(
                     elevation: 4,
-                    child: Container(
-                      width: 170,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE6BE8A),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage(
-                              "assets/images/kids-removebg-preview.png",
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                      },
+                      child: Container(
+                        width: 170,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE6BE8A),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: AssetImage(
+                                "assets/images/kids-removebg-preview.png",
+                              ),
+                              height: 100,
                             ),
-                            height: 100,
-                          ),
-                          Text(
-                            "Kids HairCutting",
-                            style: TextStyle(
-                              color: Color(0xFF2B1B0E),
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15,
+                            Text(
+                              "Kids HairCutting",
+                              style: TextStyle(
+                                color: Color(0xFF2B1B0E),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

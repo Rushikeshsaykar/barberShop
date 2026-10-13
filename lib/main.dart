@@ -1,7 +1,6 @@
-import 'package:barbershop/pages/booking_page.dart';
-import 'package:barbershop/pages/login_page.dart';
+
 import 'package:barbershop/pages/splashscren_page.dart';
-import 'package:barbershop/pages/signup_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';

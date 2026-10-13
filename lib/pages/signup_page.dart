@@ -1,8 +1,10 @@
 import 'package:barbershop/pages/home_page.dart';
 import 'package:barbershop/pages/login_page.dart';
 import 'package:barbershop/services/database.dart';
+import 'package:barbershop/services/shared_prefrens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -19,6 +21,8 @@ class _SignupPageState extends State<SignupPage> {
 
   final auth = FirebaseAuth.instance;
 
+  String image = "https://shorturl.at/trez9";
+
   registration() async {
     try {
       await auth.createUserWithEmailAndPassword(
@@ -31,10 +35,15 @@ class _SignupPageState extends State<SignupPage> {
         "Name": namecontroler.text,
         "Email": emailcontroler.text,
         "id": id,
-        "Image":
-            "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+        "Image": image,
       };
-     await DatabaseMethod().adduserdetails(userdetails, id);
+
+      // shared pref set
+
+      await SharedPrefUserinfo().saveinfo(namecontroler.text, image);
+
+      //database method to send firebase
+      await DatabaseMethod().adduserdetails(userdetails, id);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Homepage()),

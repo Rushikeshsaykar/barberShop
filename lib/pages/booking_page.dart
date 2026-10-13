@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Bookingpage extends StatefulWidget {
   const Bookingpage({super.key});
@@ -44,14 +45,94 @@ class _BookingpageState extends State<Bookingpage> {
       backgroundColor: Color(0xFFF0D2AC),
       appBar: AppBar(backgroundColor: Color(0xFFF0D2AC)),
       body: Column(
+
         children: [
-          Container(
-            margin: EdgeInsets.only(left: 10, right: 10),
-            height: 160,
-            width: double.infinity,
-            child: Image(
-              image: AssetImage("assets/images/offer.png"),
-              fit: BoxFit.fill,
+           
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: const Color(0xFF724220),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+            Container(
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: const Color(0xFFF0D5B0),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: const Icon(
+                Icons.discount_outlined,
+                size: 30,
+                color: Color(0xFF724220),
+              ),
+            ),
+            const SizedBox(width: 14),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '50% off',
+                    style: TextStyle(
+                      color: Color(0xFFF8E6C8),
+                      fontSize: 26,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    'On your first booking',
+                    style: TextStyle(color: Color(0xFFE6BF8C), fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: const Color(0xFFE6BF8C), width: 1),
+                    ),
+                    child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'FIRST50',
+                style: TextStyle(
+                  color: Color(0xFFF8E6C8),
+                  fontSize: 16,
+                  letterSpacing: 1,
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  Clipboard.setData(const ClipboardData(text: 'FIRST50'));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Code copied')),
+                  );
+                },
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFFE6BF8C),
+                ),
+                icon: const Icon(Icons.copy_rounded, size: 18),
+                label: const Text('Copy'),
+              ),
+            ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 20),

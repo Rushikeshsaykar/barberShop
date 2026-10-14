@@ -4,12 +4,15 @@ class SharedPrefUserinfo {
 
   String _name="nameKey";
     String _image="imageKey";
+    String _email="emailKey";
 
 // set shared prefrens
-Future<void> saveinfo(String name,String image) async {
+Future<void> saveinfo({required String name,required String image,required String email}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_name, name);
     await prefs.setString(_image, image);
+     await prefs.setString(_email, email);
+
     
   }
 

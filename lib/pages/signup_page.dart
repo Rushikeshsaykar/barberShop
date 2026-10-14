@@ -28,8 +28,9 @@ class _SignupPageState extends State<SignupPage> {
       );
       // shared pref set
       SharedPrefUserinfo().saveinfo(
-        namecontroler.text,
-        "https://shorturl.at/klq9g",
+       name:  namecontroler.text,
+       image: "https://shorturl.at/klq9g",
+       email: emailcontroler.text
       );
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       Map<String, dynamic> userdetails = {

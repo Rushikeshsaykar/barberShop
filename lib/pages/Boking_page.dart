@@ -2,6 +2,7 @@ import 'package:barbershop/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BokingPage extends StatefulWidget {
   String? booking;
@@ -15,6 +16,24 @@ class _BokingPageState extends State<BokingPage> {
   DateTime _selectedDate = DateTime.now();
 
   TimeOfDay _time = TimeOfDay.now();
+  final _prefs = SharedPreferences.getInstance();
+
+  String? savedUsername;
+  String? savedEmail;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedData();
+  }
+
+  Future<void> _loadSavedData() async {
+    final prefs = await _prefs;
+    setState(() {
+      savedUsername = prefs.getString('nameKey');
+      savedEmail = prefs.getString('emailKey');
+    });
+  }
 
   Future<void> datepicker(BuildContext context) async {
     final pickedDate = await showDatePicker(
@@ -50,10 +69,13 @@ class _BokingPageState extends State<BokingPage> {
       var id = DateTime.now().microsecondsSinceEpoch.toString();
 
       Map<String, dynamic> bookingdetail = {
+        "Name": savedUsername,
+        "Email": savedEmail,
+        "Service": widget.booking,
         "Date":
             "${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
         "Time": _time.format(context),
-        "Service":widget.booking
+        
       };
       await DatabaseMethod().addboking(bookingdetail, id);
       ScaffoldMessenger.of(

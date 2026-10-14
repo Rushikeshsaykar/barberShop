@@ -1,5 +1,6 @@
-import 'package:barbershop/pages/booking_page.dart';
 
+
+import 'package:barbershop/pages/Boking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -108,7 +109,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },
@@ -148,7 +149,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },
@@ -195,7 +196,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },
@@ -235,7 +236,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },
@@ -282,7 +283,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },
@@ -320,7 +321,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Bookingpage(),
+                            builder: (context) => BokingPage(),
                           ),
                         );
                       },

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
-class Bookingpage extends StatefulWidget {
-  const Bookingpage({super.key});
+class BokingPage extends StatefulWidget{
+
+BokingPage({super.key});
 
   @override
-  State<Bookingpage> createState() => _BookingpageState();
+  State<BokingPage> createState() => _BokingPageState();
 }
 
-class _BookingpageState extends State<Bookingpage> {
+class _BokingPageState extends State<BokingPage> {
   DateTime _selectedDate = DateTime.now();
+
   TimeOfDay _time = TimeOfDay.now();
 
   Future<void> datepicker(BuildContext context) async {
@@ -20,16 +23,12 @@ class _BookingpageState extends State<Bookingpage> {
       lastDate: DateTime(2028),
     );
 
-    if (pickedDate != null) {
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-    }
+    
   }
 
   Future<void> _pickTime(BuildContext context) async {
     final picked = await showTimePicker(context: context, initialTime: _time);
-    if (picked != null) setState(() => _time = picked);
+    if (picked != null)  _time = picked;
   }
 
   String get _timeText {
@@ -39,16 +38,22 @@ class _BookingpageState extends State<Bookingpage> {
     return '$hour12:$minute $period';
   }
 
+  //database boking function
+  Future<void> addboking() async {
+    Map<String, dynamic> bookingdetail = {
+      "Date":
+          "${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
+      "Time": _time,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF0D2AC),
       appBar: AppBar(backgroundColor: Color(0xFFF0D2AC)),
       body: Column(
-
         children: [
-           
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
@@ -62,73 +67,84 @@ class _BookingpageState extends State<Bookingpage> {
                 children: [
                   Row(
                     children: [
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: const Color(0xFFF0D5B0),
-                borderRadius: BorderRadius.circular(14),
-              ),
-              child: const Icon(
-                Icons.discount_outlined,
-                size: 30,
-                color: Color(0xFF724220),
-              ),
-            ),
-            const SizedBox(width: 14),
-            const Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '50% off',
-                    style: TextStyle(
-                      color: Color(0xFFF8E6C8),
-                      fontSize: 26,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Text(
-                    'On your first booking',
-                    style: TextStyle(color: Color(0xFFE6BF8C), fontSize: 15),
-                  ),
-                ],
-              ),
-            ),
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF0D5B0),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: const Icon(
+                          Icons.discount_outlined,
+                          size: 30,
+                          color: Color(0xFF724220),
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                      const Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '50% off',
+                              style: TextStyle(
+                                color: Color(0xFFF8E6C8),
+                                fontSize: 26,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            Text(
+                              'On your first booking',
+                              style: TextStyle(
+                                color: Color(0xFFE6BF8C),
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 14),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE6BF8C), width: 1),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: const Color(0xFFE6BF8C),
+                        width: 1,
+                      ),
                     ),
                     child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'FIRST50',
-                style: TextStyle(
-                  color: Color(0xFFF8E6C8),
-                  fontSize: 16,
-                  letterSpacing: 1,
-                ),
-              ),
-              TextButton.icon(
-                onPressed: () {
-                  Clipboard.setData(const ClipboardData(text: 'FIRST50'));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Code copied')),
-                  );
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: const Color(0xFFE6BF8C),
-                ),
-                icon: const Icon(Icons.copy_rounded, size: 18),
-                label: const Text('Copy'),
-              ),
-            ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'FIRST50',
+                          style: TextStyle(
+                            color: Color(0xFFF8E6C8),
+                            fontSize: 16,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                        TextButton.icon(
+                          onPressed: () {
+                            Clipboard.setData(
+                              const ClipboardData(text: 'FIRST50'),
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Code copied')),
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: const Color(0xFFE6BF8C),
+                          ),
+                          icon: const Icon(Icons.copy_rounded, size: 18),
+                          label: const Text('Copy'),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -136,6 +152,7 @@ class _BookingpageState extends State<Bookingpage> {
             ),
           ),
           SizedBox(height: 20),
+          
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
@@ -241,5 +258,6 @@ class _BookingpageState extends State<Bookingpage> {
         ],
       ),
     );
+  
   }
 }

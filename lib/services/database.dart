@@ -6,4 +6,8 @@ class DatabaseMethod {
   Future<void> adduserdetails(Map<String, dynamic> userdetail, id) async {
    return await _firestore.collection("user").doc(id).set(userdetail);
   }
+
+  Future<void> addboking(Map<String, dynamic> bookingdetail, id) async {
+   return await _firestore.collection("bokking").doc(id).set(bookingdetail);
+  }
 }

@@ -1,4 +1,6 @@
 
+
+import 'package:barbershop/pages/Boking_page.dart';
 import 'package:barbershop/pages/home_page.dart';
 import 'package:barbershop/pages/signup_page.dart';
 import 'package:barbershop/pages/splashscren_page.dart';
@@ -19,9 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignupPage(),
+      home: BokingPage(),
     );
   }
 }

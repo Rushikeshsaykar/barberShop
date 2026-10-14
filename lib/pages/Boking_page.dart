@@ -1,10 +1,10 @@
+import 'package:barbershop/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-class BokingPage extends StatefulWidget{
-
-BokingPage({super.key});
+class BokingPage extends StatefulWidget {
+  BokingPage({super.key});
 
   @override
   State<BokingPage> createState() => _BokingPageState();
@@ -22,13 +22,19 @@ class _BokingPageState extends State<BokingPage> {
       firstDate: DateTime(2026),
       lastDate: DateTime(2028),
     );
-
-    
+  if (pickedDate != null)
+      setState(() {
+        _selectedDate = pickedDate;
+      });
   }
 
   Future<void> _pickTime(BuildContext context) async {
     final picked = await showTimePicker(context: context, initialTime: _time);
-    if (picked != null)  _time = picked;
+    if (picked != null)
+      setState(() {
+        _time = picked;
+      });
+    
   }
 
   String get _timeText {
@@ -39,12 +45,23 @@ class _BokingPageState extends State<BokingPage> {
   }
 
   //database boking function
-  Future<void> addboking() async {
-    Map<String, dynamic> bookingdetail = {
-      "Date":
-          "${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
-      "Time": _time,
-    };
+  Future<void> booking() async {
+    try {
+      var id = DateTime.now().microsecondsSinceEpoch.toString();
+
+      Map<String, dynamic> bookingdetail = {
+         "Date":"${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
+        "Time": _time.format(context)
+      };
+      await DatabaseMethod().addboking(bookingdetail, id);
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Booking successful")));
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Try After SOme time")));
+    }
   }
 
   @override
@@ -152,7 +169,7 @@ class _BokingPageState extends State<BokingPage> {
             ),
           ),
           SizedBox(height: 20),
-          
+
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
@@ -243,21 +260,25 @@ class _BokingPageState extends State<BokingPage> {
 
           SizedBox(height: 50),
 
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(255, 117, 69, 30),
-              foregroundColor: const Color(0xFFF0D2AC),
-              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
+          SizedBox(width: 400,
+            child: ElevatedButton(
+              onPressed: () {
+                booking();
+              },
+              style: ElevatedButton.styleFrom(
+                
+                backgroundColor: const Color.fromARGB(255, 117, 69, 30),
+                foregroundColor: const Color(0xFFF0D2AC),
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
+              child: const Text('Book Now'),
             ),
-            child: const Text('Book Now'),
           ),
         ],
       ),
     );
-  
   }
 }

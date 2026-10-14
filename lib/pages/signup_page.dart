@@ -20,8 +20,6 @@ class _SignupPageState extends State<SignupPage> {
 
   final auth = FirebaseAuth.instance;
 
-  
-
   registration() async {
     try {
       await auth.createUserWithEmailAndPassword(
@@ -29,7 +27,10 @@ class _SignupPageState extends State<SignupPage> {
         password: paswordcontroler.text,
       );
       // shared pref set
-      SharedPrefUserinfo().saveinfo(namecontroler.text, "https://shorturl.at/klq9g");
+      SharedPrefUserinfo().saveinfo(
+        namecontroler.text,
+        "https://shorturl.at/klq9g",
+      );
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       Map<String, dynamic> userdetails = {
         "Name": namecontroler.text,
@@ -38,10 +39,13 @@ class _SignupPageState extends State<SignupPage> {
         "Image": "https://shorturl.at/klq9g",
       };
 
-      
-
       //database method to send firebase
       await DatabaseMethod().adduserdetails(userdetails, id);
+
+      //messege:
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("wellcome")));
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Homepage()),

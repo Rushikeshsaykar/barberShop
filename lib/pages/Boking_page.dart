@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 class BokingPage extends StatefulWidget {
-  BokingPage({super.key});
+  String? booking;
+  BokingPage({super.key, required this.booking});
 
   @override
   State<BokingPage> createState() => _BokingPageState();
@@ -22,7 +23,7 @@ class _BokingPageState extends State<BokingPage> {
       firstDate: DateTime(2026),
       lastDate: DateTime(2028),
     );
-  if (pickedDate != null)
+    if (pickedDate != null)
       setState(() {
         _selectedDate = pickedDate;
       });
@@ -34,7 +35,6 @@ class _BokingPageState extends State<BokingPage> {
       setState(() {
         _time = picked;
       });
-    
   }
 
   String get _timeText {
@@ -50,8 +50,10 @@ class _BokingPageState extends State<BokingPage> {
       var id = DateTime.now().microsecondsSinceEpoch.toString();
 
       Map<String, dynamic> bookingdetail = {
-         "Date":"${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
-        "Time": _time.format(context)
+        "Date":
+            "${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
+        "Time": _time.format(context),
+        "Service":widget.booking
       };
       await DatabaseMethod().addboking(bookingdetail, id);
       ScaffoldMessenger.of(
@@ -148,18 +150,18 @@ class _BokingPageState extends State<BokingPage> {
                         ),
                         TextButton.icon(
                           onPressed: () {
-                            Clipboard.setData(
-                              const ClipboardData(text: 'FIRST50'),
-                            );
+                            // Clipboard.setData(
+                            //   const ClipboardData(text: 'FIRST50'),
+                            // );
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Code copied')),
+                              const SnackBar(content: Text('Code applied')),
                             );
                           },
                           style: TextButton.styleFrom(
                             foregroundColor: const Color(0xFFE6BF8C),
                           ),
-                          icon: const Icon(Icons.copy_rounded, size: 18),
-                          label: const Text('Copy'),
+
+                          label: const Text('Apply'),
                         ),
                       ],
                     ),
@@ -169,7 +171,22 @@ class _BokingPageState extends State<BokingPage> {
             ),
           ),
           SizedBox(height: 20),
-
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "Boking for : ${widget.booking}",
+                  style: TextStyle(
+                    color: Color(0xFF2B1B0E),
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Container(
@@ -260,16 +277,19 @@ class _BokingPageState extends State<BokingPage> {
 
           SizedBox(height: 50),
 
-          SizedBox(width: 400,
+          SizedBox(
+            width: 400,
             child: ElevatedButton(
               onPressed: () {
                 booking();
               },
               style: ElevatedButton.styleFrom(
-                
                 backgroundColor: const Color.fromARGB(255, 117, 69, 30),
                 foregroundColor: const Color(0xFFF0D2AC),
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 14,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(14),
                 ),

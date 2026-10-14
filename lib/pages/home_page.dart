@@ -109,7 +109,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(booking: "Clasic Sheving"),
                           ),
                         );
                       },
@@ -130,7 +130,7 @@ class _HomepageState extends State<Homepage> {
                               height: 100,
                             ),
                             Text(
-                              "clasic Sheving",
+                              "Clasic Sheving",
                               style: TextStyle(
                                 color: Color(0xFF2B1B0E),
                                 fontWeight: FontWeight.w500,
@@ -149,7 +149,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(booking: "Hair Wash",),
                           ),
                         );
                       },
@@ -170,7 +170,7 @@ class _HomepageState extends State<Homepage> {
                               height: 100,
                             ),
                             Text(
-                              "hair wash",
+                              "Hair Wash",
                               style: TextStyle(
                                 color: Color(0xFF2B1B0E),
                                 fontWeight: FontWeight.w500,
@@ -196,7 +196,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(booking: "Hair Cutting",),
                           ),
                         );
                       },
@@ -236,7 +236,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(booking:  "Beard Triming",),
                           ),
                         );
                       },
@@ -283,7 +283,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(booking: "Fecial",),
                           ),
                         );
                       },
@@ -321,7 +321,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => BokingPage(),
+                            builder: (context) => BokingPage(  booking: "Kids HairCutting"),
                           ),
                         );
                       },

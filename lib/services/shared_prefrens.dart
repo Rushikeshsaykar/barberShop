@@ -2,8 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefUserinfo {
 
-  String _name="user name";
-    String _image="";
+  String _name="nameKey";
+    String _image="imageKey";
 
 // set shared prefrens
 Future<void> saveinfo(String name,String image) async {

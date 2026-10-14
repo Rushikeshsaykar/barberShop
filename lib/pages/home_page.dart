@@ -1,7 +1,7 @@
 import 'package:barbershop/pages/booking_page.dart';
 
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -11,8 +11,23 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  late final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  String? savedUsername;
+  String? saveimage;
 
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedData();
+  }
 
+  Future<void> _loadSavedData() async {
+    final prefs = await _prefs;
+    setState(() {
+      savedUsername = prefs.getString('nameKey');
+      saveimage = prefs.getString('imageKey');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +55,7 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ),
                         Text(
-                          "Rushikesh",
+                          savedUsername.toString(),
                           style: TextStyle(
                             color: Color(0xFF2B1B0E),
                             fontWeight: FontWeight.bold,
@@ -49,14 +64,20 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ],
                     ),
-
+                    //saveimage.toString()
                     ClipRRect(
                       borderRadius: BorderRadiusGeometry.circular(35),
                       child: Image(
-                        image: AssetImage("assets/images/girl.jpg"),
+                        image: NetworkImage("$saveimage"),
                         height: 65,
                         width: 65,
                         fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.person, size: 40),
+                        loadingBuilder: (context, child, progress) =>
+                            progress == null
+                            ? child
+                            : const CircularProgressIndicator(),
                       ),
                     ),
                   ],
@@ -84,7 +105,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -119,7 +145,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -132,7 +163,9 @@ class _HomepageState extends State<Homepage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image(
-                              image: AssetImage("assets/images/hairdresser.png"),
+                              image: AssetImage(
+                                "assets/images/hairdresser.png",
+                              ),
                               height: 100,
                             ),
                             Text(
@@ -159,7 +192,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -194,7 +232,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -236,7 +279,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -269,7 +317,12 @@ class _HomepageState extends State<Homepage> {
                     elevation: 4,
                     child: InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookingpage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Bookingpage(),
+                          ),
+                        );
                       },
                       child: Container(
                         width: 170,
@@ -308,6 +361,4 @@ class _HomepageState extends State<Homepage> {
       ),
     );
   }
-
- 
 }

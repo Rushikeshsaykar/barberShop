@@ -5,7 +5,6 @@ import 'package:barbershop/services/shared_prefrens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
 
@@ -21,7 +20,7 @@ class _SignupPageState extends State<SignupPage> {
 
   final auth = FirebaseAuth.instance;
 
-  String image = "https://shorturl.at/trez9";
+  
 
   registration() async {
     try {
@@ -29,18 +28,17 @@ class _SignupPageState extends State<SignupPage> {
         email: emailcontroler.text,
         password: paswordcontroler.text,
       );
-
+      // shared pref set
+      SharedPrefUserinfo().saveinfo(namecontroler.text, "https://shorturl.at/klq9g");
       final id = DateTime.now().millisecondsSinceEpoch.toString();
       Map<String, dynamic> userdetails = {
         "Name": namecontroler.text,
         "Email": emailcontroler.text,
         "id": id,
-        "Image": image,
+        "Image": "https://shorturl.at/klq9g",
       };
 
-      // shared pref set
-
-      await SharedPrefUserinfo().saveinfo(namecontroler.text, image);
+      
 
       //database method to send firebase
       await DatabaseMethod().adduserdetails(userdetails, id);

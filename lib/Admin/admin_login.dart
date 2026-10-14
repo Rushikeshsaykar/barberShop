@@ -102,19 +102,19 @@ class _AdminloginState extends State<Adminlogin> {
     
     await FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
       snapshot.docs.forEach((result) {
-        if (result.data()["id"] != namecontroler.text.trim()) {
+        if (result.data()["id"] != namecontroler.text.toLowerCase().trim()) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text("Wrong User Name",style: TextStyle(fontSize: 17),)));
         }
-        if (result.data()["password"] != passwordcontroler.text.trim()) {
+       else if (result.data()["password"] != passwordcontroler.text.trim()) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text("Wrong Password",style: TextStyle(fontSize: 17))));
         } else {
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text("Wellcome ",style: TextStyle(fontSize: 17))));
+          ).showSnackBar(SnackBar(content: Text("Wellcome.... ",style: TextStyle(fontSize: 17))));
 
           Navigator.pushReplacement(
             context,

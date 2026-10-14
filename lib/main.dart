@@ -1,6 +1,7 @@
 
 
 import 'package:barbershop/Admin/admin_login.dart';
+import 'package:barbershop/Admin/booking_admin.dart';
 
 import 'package:barbershop/pages/Boking_page.dart';
 import 'package:barbershop/pages/home_page.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Adminlogin(),
+      home: bookingadminpage(),
     );
   }
 }

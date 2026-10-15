@@ -1,6 +1,8 @@
 import 'package:barbershop/pages/home_page.dart';
+import 'package:barbershop/pages/resetpassword_page.dart';
 import 'package:barbershop/pages/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Loginpage extends StatefulWidget {
@@ -121,7 +123,9 @@ class _LoginpageState extends State<Loginpage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, CupertinoPageRoute(builder: (context)=>ResetpasswordPage()));
+                      },
                       child: Text(
                         "Forget Password?",
                         style: TextStyle(fontWeight: FontWeight.bold),

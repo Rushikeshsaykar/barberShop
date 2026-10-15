@@ -7,15 +7,23 @@ class SharedPrefUserinfo {
     String _email="emailKey";
 
 // set shared prefrens
-Future<void> saveinfo({required String name,required String image,required String email}) async {
+Future<void> saveinfo({required String name,required String email}) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_name, name);
-    await prefs.setString(_image, image);
+    
      await prefs.setString(_email, email);
 
     
   }
 
+Future<void> saveimage({required String image}) async {
+    final prefs = await SharedPreferences.getInstance();
+    
+    await prefs.setString(_image, image);
+     
+
+    
+  }
   // static Future<Map<String, dynamic>?> getBooking() async {
   //    final prefs = await SharedPreferences.getInstance();
   //    final name = prefs.getString(_name);

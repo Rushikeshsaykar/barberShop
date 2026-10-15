@@ -1,8 +1,10 @@
-
+import 'dart:io';
 
 import 'package:barbershop/pages/Boking_page.dart';
+import 'package:barbershop/services/shared_prefrens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Homepage extends StatefulWidget {
@@ -15,7 +17,9 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   late final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   String? savedUsername;
-  String? saveimage;
+
+  final ImagePicker _picker = ImagePicker();
+  File? _image;
 
   @override
   void initState() {
@@ -23,11 +27,37 @@ class _HomepageState extends State<Homepage> {
     _loadSavedData();
   }
 
+  Future<void> _pickImage(ImageSource source) async {
+    try {
+      final XFile? picked = await _picker.pickImage(
+        source: source,
+        imageQuality: 100,
+      );
+      if (picked == null) return;
+
+      await SharedPrefUserinfo().saveimage(image: picked.path);
+      if (!mounted) return;
+      setState(() => _image = File(picked.path));
+    } catch (error) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Unable to select or save image: $error")),
+      );
+    }
+  }
+
   Future<void> _loadSavedData() async {
     final prefs = await _prefs;
+    final imagePath = prefs.getString('imageKey');
+    final imageFile = imagePath == null ? null : File(imagePath);
+    final imageExists = imageFile != null && await imageFile.exists();
+
+    if (!mounted) return;
     setState(() {
       savedUsername = prefs.getString('nameKey');
-      saveimage = prefs.getString('imageKey');
+      if (imageExists) {
+        _image = imageFile;
+      }
     });
   }
 
@@ -68,18 +98,22 @@ class _HomepageState extends State<Homepage> {
                     ),
                     //saveimage.toString()
                     ClipRRect(
-                      borderRadius: BorderRadiusGeometry.circular(35),
-                      child: Image(
-                        image: NetworkImage("$saveimage"),
-                        height: 65,
-                        width: 65,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            const Icon(Icons.person, size: 40),
-                        loadingBuilder: (context, child, progress) =>
-                            progress == null
-                            ? child
-                            : const CircularProgressIndicator(),
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        color: Colors.deepPurple,
+                        child: InkWell(
+                          onTap: () {
+                            _showImageSourceSheet(context);
+                          },
+                          child: _image == null
+                              ? Image.asset(
+                                  "assets/images/person.png",
+                                  fit: BoxFit.cover,
+                                )
+                              : Image.file(_image!, fit: BoxFit.cover),
+                        ),
                       ),
                     ),
                   ],
@@ -110,7 +144,8 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(booking: "Clasic Sheving"),
+                            builder: (context) =>
+                                BokingPage(booking: "Clasic Sheving"),
                           ),
                         );
                       },
@@ -150,7 +185,8 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(booking: "Hair Wash",),
+                            builder: (context) =>
+                                BokingPage(booking: "Hair Wash"),
                           ),
                         );
                       },
@@ -197,7 +233,8 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(booking: "Hair Cutting",),
+                            builder: (context) =>
+                                BokingPage(booking: "Hair Cutting"),
                           ),
                         );
                       },
@@ -237,7 +274,8 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(booking:  "Beard Triming",),
+                            builder: (context) =>
+                                BokingPage(booking: "Beard Triming"),
                           ),
                         );
                       },
@@ -284,7 +322,7 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(booking: "Fecial",),
+                            builder: (context) => BokingPage(booking: "Fecial"),
                           ),
                         );
                       },
@@ -322,7 +360,8 @@ class _HomepageState extends State<Homepage> {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => BokingPage(  booking: "Kids HairCutting"),
+                            builder: (context) =>
+                                BokingPage(booking: "Kids HairCutting"),
                           ),
                         );
                       },
@@ -361,6 +400,43 @@ class _HomepageState extends State<Homepage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showImageSourceSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // sheet wraps its content
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.camera_alt),
+                  title: const Text("Camera"),
+                  onTap: () {
+                    _pickImage(ImageSource.camera);
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text("Gallery"),
+                  onTap: () {
+                    _pickImage(ImageSource.gallery);
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

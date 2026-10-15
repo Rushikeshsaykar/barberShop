@@ -1,5 +1,6 @@
 import 'package:barbershop/Admin/booking_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Adminlogin extends StatefulWidget {
@@ -118,7 +119,7 @@ class _AdminloginState extends State<Adminlogin> {
 
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => bookingadminpage()),
+            CupertinoPageRoute(builder: (context) => bookingadminpage()),
           );
         }
       });

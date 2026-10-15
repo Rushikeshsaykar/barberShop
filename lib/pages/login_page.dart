@@ -28,7 +28,7 @@ class _LoginpageState extends State<Loginpage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        CupertinoPageRoute(builder: (context) => Homepage()),
       );
       ScaffoldMessenger.of(
         context,
@@ -143,7 +143,7 @@ class _LoginpageState extends State<Loginpage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignupPage()),
+                          CupertinoPageRoute(builder: (context) => SignupPage()),
                         );
                       },
                       child: Text(

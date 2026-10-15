@@ -3,6 +3,7 @@ import 'package:barbershop/pages/login_page.dart';
 import 'package:barbershop/services/database.dart';
 import 'package:barbershop/services/shared_prefrens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
@@ -49,7 +50,7 @@ class _SignupPageState extends State<SignupPage> {
       ).showSnackBar(SnackBar(content: Text("wellcome")));
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        CupertinoPageRoute(builder: (context) => Homepage()),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -159,7 +160,7 @@ class _SignupPageState extends State<SignupPage> {
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
-                          MaterialPageRoute(builder: (context) => Loginpage()),
+                          CupertinoPageRoute(builder: (context) => Loginpage()),
                         );
                       },
                       child: Text(

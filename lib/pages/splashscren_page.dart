@@ -1,6 +1,7 @@
 import 'package:barbershop/pages/home_page.dart';
 import 'package:barbershop/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class splashScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _splashScreenState extends State<splashScreen> {
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const Homepage()),
+          CupertinoPageRoute(builder: (_) => const Homepage()),
         );
       });
     } else {
@@ -34,7 +35,7 @@ class _splashScreenState extends State<splashScreen> {
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const Loginpage()),
+          CupertinoPageRoute(builder: (_) => const Loginpage()),
         );
       });
     }

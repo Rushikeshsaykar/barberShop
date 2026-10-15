@@ -1,6 +1,7 @@
 
 
 import 'package:barbershop/pages/Boking_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -108,7 +109,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(booking: "Clasic Sheving"),
                           ),
                         );
@@ -148,7 +149,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(booking: "Hair Wash",),
                           ),
                         );
@@ -195,7 +196,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(booking: "Hair Cutting",),
                           ),
                         );
@@ -235,7 +236,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(booking:  "Beard Triming",),
                           ),
                         );
@@ -282,7 +283,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(booking: "Fecial",),
                           ),
                         );
@@ -320,7 +321,7 @@ class _HomepageState extends State<Homepage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
+                          CupertinoPageRoute(
                             builder: (context) => BokingPage(  booking: "Kids HairCutting"),
                           ),
                         );

@@ -8,10 +8,15 @@ class DatabaseMethod {
   }
 
   Future<void> addboking(Map<String, dynamic> bookingdetail, id) async {
-    return await _firestore.collection("bokking").doc(id).set(bookingdetail);
+    return await _firestore.collection("booking").doc(id).set(bookingdetail);
   }
 
   Future<Stream<QuerySnapshot>> getBoking() async {
-    return FirebaseFirestore.instance.collection("bokking").snapshots();
+    return FirebaseFirestore.instance.collection("booking").snapshots();
+  }
+
+
+  Future deteteBooking(String id) async {
+    return await FirebaseFirestore.instance.collection("Booking").doc(id).delete();
   }
 }

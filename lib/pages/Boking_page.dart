@@ -20,6 +20,7 @@ class _BokingPageState extends State<BokingPage> {
 
   String? savedUsername;
   String? savedEmail;
+  String? userImage;
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _BokingPageState extends State<BokingPage> {
     setState(() {
       savedUsername = prefs.getString('nameKey');
       savedEmail = prefs.getString('emailKey');
+      userImage=prefs.getString("imageKey");
     });
   }
 
@@ -69,9 +71,11 @@ class _BokingPageState extends State<BokingPage> {
       var id = DateTime.now().microsecondsSinceEpoch.toString();
 
       Map<String, dynamic> bookingdetail = {
+        "id":id,
         "Name": savedUsername,
         "Email": savedEmail,
         "Service": widget.booking,
+        "Image": userImage,
         "Date":
             "${_selectedDate.day}/${_selectedDate.month}/${_selectedDate.year}",
         "Time": _time.format(context),

@@ -23,7 +23,7 @@ class _splashScreenState extends State<splashScreen> {
 
   void splashfunc() async{
     if (user != null) {
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(milliseconds: 1), () {
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
@@ -31,7 +31,7 @@ class _splashScreenState extends State<splashScreen> {
         );
       });
     } else {
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 1), () {
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
@@ -45,10 +45,7 @@ class _splashScreenState extends State<splashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF0D2AC),
-      body: Container(
-        margin: EdgeInsets.only(top: 250),
-        child: Image(image: AssetImage("assets/images/1328.png")),
-      ),
+     
     );
   }
 }
